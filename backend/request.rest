@@ -5,3 +5,7 @@ Content-Type: application/json
     "name": "doni",
     "cpf": 44646468832
 }
+
+###
+
+GET http://localhost:3000/api/getAllCustomers

@@ -5,7 +5,6 @@ const createCustomer = async (req, res) => {
       // Extrair os dados do corpo da requisição
       const { name, cpf } = req.body;
   
-      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@", req.body)
       // Criar uma nova instância do customer
       const newCustomer = new Customer({
         name,
@@ -23,6 +22,16 @@ const createCustomer = async (req, res) => {
       console.log(error);
     }
   };
+
+  const getAllCustomers = async (req, res) => {
+    try {
+        const getAll = await Customer.find();
+        res.json(getAll);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao criar o customer -- ' + error });
+        console.log(error);
+    }
+  }
   
   // Função para atualizar um customer existente
   const updateCustomer = async (req, res) => {
@@ -78,6 +87,7 @@ const createCustomer = async (req, res) => {
   // Exportar as funções do controller
   module.exports = {
     createCustomer,
+    getAllCustomers,
     updateCustomer,
     deleteCustomer
   };

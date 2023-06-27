@@ -6,6 +6,8 @@ const customerController = require("../controllers/customerController");
 // Rota para criar um novo customer
 router.post('/createCustomer', customerController.createCustomer);
 
+router.get('/getAllCustomers', customerController.getAllCustomers);
+
 // Rota para atualizar um customer existente
 router.put('/updateCustomers/:id', customerController.updateCustomer);
 
