@@ -1,0 +1,7 @@
+POST http://localhost:3000/api/createCustomer
+Content-Type: application/json
+
+{
+    "name": "doni",
+    "cpf": 44646468832
+}
