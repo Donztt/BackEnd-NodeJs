@@ -1,5 +1,7 @@
 const User = require('../models/User');
 const axios = require('axios');
+const createMessageChannel = require('../messages/messageChannel');
+require('dotenv').config();
 
 const createUser = async (req, res) => {
   try {
@@ -13,10 +15,15 @@ const createUser = async (req, res) => {
     });
 
     const savedUser = await newUser.save();
+    const messageChannel = await createMessageChannel(
+      'User:' + savedUser.first_name + ' successfull created'
+    );
 
-    res.status(201).json(savedUser);
+    if (messageChannel != null) {
+      res.status(201).json(savedUser);
+    }
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao criar o User -- ' + error });
+    res.status(500).json({ error: 'Create user error -- ' + error });
     console.log(error);
   }
 };
@@ -55,12 +62,12 @@ const getUserById = async (req, res) => {
     const user = await User.findById(id);
 
     if (!user) {
-      return res.status(404).json({ error: 'Usuário não encontrado' });
+      return res.status(404).json({ error: 'User not found' });
     }
 
     res.json(user);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao buscar o usuário' });
+    res.status(500).json({ error: 'Error fetching user' });
   }
 };
 
@@ -69,7 +76,7 @@ const getAllUsers = async (req, res) => {
     const getAll = await User.find();
     res.json(getAll);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao criar o User -- ' + error });
+    res.status(500).json({ error: 'Error on find users -- ' + error });
     console.log(error);
   }
 };
@@ -86,11 +93,11 @@ const updateUser = async (req, res) => {
     );
 
     if (!updatedUser) {
-      return res.status(404).json({ error: 'User não encontrado' });
+      return res.status(404).json({ error: 'User not found' });
     }
     res.json(updatedUser);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao atualizar o User' });
+    res.status(500).json({ error: 'Error on update user' });
   }
 };
 
@@ -101,12 +108,12 @@ const deleteUser = async (req, res) => {
     const deletedUser = await User.findByIdAndDelete(id);
 
     if (!deletedUser) {
-      return res.status(404).json({ error: 'User não encontrado' });
+      return res.status(404).json({ error: 'User not found' });
     }
 
-    res.json({ message: 'User deletado com sucesso' });
+    res.json({ message: 'User deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao deletar o User' });
+    res.status(500).json({ error: 'Error on delete user' });
   }
 };
 
