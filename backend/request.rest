@@ -2,8 +2,8 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "email":"byron.fields@reqres.in",
-    "first_name":"Byron",
+    "email":"test@reqres.in",
+    "first_name":"test",
     "last_name":"Fields",
     "avatar":"https://reqres.in/img/faces/10-image.jpg"
 }

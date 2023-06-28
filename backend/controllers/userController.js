@@ -1,10 +1,8 @@
-const User = require("../models/User");
+const User = require('../models/User');
 const axios = require('axios');
-var mongoose = require('mongoose');
 
 const createUser = async (req, res) => {
   try {
-    
     const { email, first_name, last_name, avatar } = req.body;
 
     const newUser = new User({
@@ -18,7 +16,7 @@ const createUser = async (req, res) => {
 
     res.status(201).json(savedUser);
   } catch (error) {
-    res.status(500).json({ error: "Erro ao criar o User -- " + error });
+    res.status(500).json({ error: 'Erro ao criar o User -- ' + error });
     console.log(error);
   }
 };
@@ -44,8 +42,7 @@ const getUserReqResAvatar = async (req, res) => {
     const imageBuffer = Buffer.from(response.data, 'binary');
     const base64Image = imageBuffer.toString('base64');
 
-    res.json({ base64: base64Image});
-
+    res.json({ base64: base64Image });
   } catch (error) {
     console.error(error);
   }
@@ -58,12 +55,12 @@ const getUserById = async (req, res) => {
     const user = await User.findById(id);
 
     if (!user) {
-      return res.status(404).json({ error: "Usuário não encontrado" });
+      return res.status(404).json({ error: 'Usuário não encontrado' });
     }
 
     res.json(user);
   } catch (error) {
-    res.status(500).json({ error: "Erro ao buscar o usuário" });
+    res.status(500).json({ error: 'Erro ao buscar o usuário' });
   }
 };
 
@@ -72,7 +69,7 @@ const getAllUsers = async (req, res) => {
     const getAll = await User.find();
     res.json(getAll);
   } catch (error) {
-    res.status(500).json({ error: "Erro ao criar o User -- " + error });
+    res.status(500).json({ error: 'Erro ao criar o User -- ' + error });
     console.log(error);
   }
 };
@@ -89,11 +86,11 @@ const updateUser = async (req, res) => {
     );
 
     if (!updatedUser) {
-      return res.status(404).json({ error: "User não encontrado" });
+      return res.status(404).json({ error: 'User não encontrado' });
     }
     res.json(updatedUser);
   } catch (error) {
-    res.status(500).json({ error: "Erro ao atualizar o User" });
+    res.status(500).json({ error: 'Erro ao atualizar o User' });
   }
 };
 
@@ -104,12 +101,12 @@ const deleteUser = async (req, res) => {
     const deletedUser = await User.findByIdAndDelete(id);
 
     if (!deletedUser) {
-      return res.status(404).json({ error: "User não encontrado" });
+      return res.status(404).json({ error: 'User não encontrado' });
     }
 
-    res.json({ message: "User deletado com sucesso" });
+    res.json({ message: 'User deletado com sucesso' });
   } catch (error) {
-    res.status(500).json({ error: "Erro ao deletar o User" });
+    res.status(500).json({ error: 'Erro ao deletar o User' });
   }
 };
 

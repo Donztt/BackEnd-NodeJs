@@ -1,19 +1,19 @@
 const express = require('express');
-const app= express();
-const routes = require("./routes/router");
-const cors = require('cors')
+const app = express();
+const routes = require('./routes/router');
+const cors = require('cors');
 
-const PORT = 3000
+const PORT = 3000;
 
-const conn = require("./db/conn");
+const conn = require('./db/conn');
 
-app.use(cors())
-app.use(express.json()); 
+app.use(cors());
+app.use(express.json());
 
-conn()
+conn();
 
-app.use("/api", routes)
+app.use('/api', routes);
 
 app.listen(PORT, () => {
-    console.log("Running on port: "+ PORT);
-})
+  console.log('Running on port: ' + PORT);
+});

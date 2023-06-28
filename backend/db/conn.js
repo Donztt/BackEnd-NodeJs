@@ -1,19 +1,17 @@
-const mongoose = require("mongoose")
-
+const mongoose = require('mongoose');
 
 async function main() {
-    try {
-        
-        mongoose.set("strictQuery", true)
+  try {
+    mongoose.set('strictQuery', true);
 
-        await mongoose.connect(
-            "mongodb+srv://Donztt:zYKEmGGJZVYiKbG2@cluster0.6mmjgfr.mongodb.net/"
-        )
-        
-        console.log("DB Connected");
-    } catch (error) {
-        console.log("error: ", error);
-    }
+    await mongoose.connect(
+      'mongodb+srv://Donztt:zYKEmGGJZVYiKbG2@cluster0.6mmjgfr.mongodb.net/'
+    );
+
+    console.log('DB Connected');
+  } catch (error) {
+    console.log('error: ', error);
+  }
 }
 
-module.exports = main
+module.exports = main;
