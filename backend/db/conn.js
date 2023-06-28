@@ -12,7 +12,7 @@ async function main() {
         
         console.log("DB Connected");
     } catch (error) {
-        console.log("erro: ", error);
+        console.log("error: ", error);
     }
 }
 

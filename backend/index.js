@@ -15,5 +15,5 @@ conn()
 app.use("/api", routes)
 
 app.listen(PORT, () => {
-    console.log("entrou aqui");
+    console.log("Running on port: "+ PORT);
 })
